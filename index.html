@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abundance Mindset Intensive — Seat Reservation</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+  <main class="app-shell">
+    <div class="split-card">
+
+      <!-- =========================================================
+           LEFT SIDEBAR: BRAND + 4-STEP VERTICAL STEPPER
+           ========================================================= -->
+      <aside class="sidebar">
+        <div class="sidebar-top">
+          <div class="brand-lockup">
+            <span class="brand-wordmark">AMI</span>
+            <img src="bdtc_logo.png" alt="Logo" class="brand-logo" onerror="this.style.display='none'" />
+          </div>
+
+          <h1 class="sidebar-title">Abundance Mindset Intensive</h1>
+          <p class="sidebar-subtitle">12 live sessions on Zoom, 2 hrs each. Reserve your seat and unlock your batch WhatsApp group.</p>
+
+          <nav class="v-stepper" aria-label="Registration Progress">
+            <div class="v-step active" id="vStep1">
+              <div class="v-step-rail">
+                <span class="v-circle" id="vCircle1">1</span>
+                <span class="v-line" id="vLine1"></span>
+              </div>
+              <div class="v-step-text">
+                <span class="v-title">Reserve Seat</span>
+                <span class="v-desc">Batch &amp; payment</span>
+              </div>
+            </div>
+
+            <div class="v-step" id="vStep2">
+              <div class="v-step-rail">
+                <span class="v-circle" id="vCircle2">2</span>
+                <span class="v-line" id="vLine2"></span>
+              </div>
+              <div class="v-step-text">
+                <span class="v-title">Mega Offer</span>
+                <span class="v-desc">Optional bonus courses</span>
+              </div>
+            </div>
+
+            <div class="v-step" id="vStep3">
+              <div class="v-step-rail">
+                <span class="v-circle" id="vCircle3">3</span>
+                <span class="v-line" id="vLine3"></span>
+              </div>
+              <div class="v-step-text">
+                <span class="v-title">Your Details</span>
+                <span class="v-desc">Participant profile</span>
+              </div>
+            </div>
+
+            <div class="v-step" id="vStep4">
+              <div class="v-step-rail">
+                <span class="v-circle" id="vCircle4">4</span>
+              </div>
+              <div class="v-step-text">
+                <span class="v-title">WhatsApp Group</span>
+                <span class="v-desc">Instant batch access</span>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="security-note">
+            <span class="status-dot"></span>
+            <span>Secured by Razorpay · UPI, cards, netbanking</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- =========================================================
+           RIGHT CONTENT PANE
+           ========================================================= -->
+      <section class="content-pane">
+
+        <!-- -------------------------------------------------------
+             STEP 1: ORDER SUMMARY, BATCH & RAZORPAY SEAT PAYMENT
+             ------------------------------------------------------- -->
+        <div id="step1View" class="view-panel">
+          <form id="seatPaymentForm" novalidate>
+
+            <!-- YOUR ORDER CARD -->
+            <div class="order-box">
+              <div class="section-kicker teal-kicker">YOUR ORDER</div>
+              <div class="order-header">
+                <div>
+                  <h2 class="order-title">Abundance Mindset Intensive</h2>
+                  <p class="order-sub">12 live sessions on Zoom, 2 hrs each. Recording access for 1 year.</p>
+                </div>
+                <div class="order-price-col">
+                  <strong class="order-main-price">₹14,999</strong>
+                  <span class="strike">₹24,999</span>
+                  <span class="save-pill">40% OFF</span>
+                </div>
+              </div>
+
+              <!-- 2 YEARS RECORDING ADD-ON (+₹999) -->
+              <label class="addon-card selected" id="recordingAddonCard">
+                <input type="checkbox" id="recordingAddonCheck" checked />
+                <span class="addon-checkbox"></span>
+                <div class="addon-info">
+                  <strong>2 years of recording access</strong>
+                  <span>One extra year on top of the year included. Untick to remove.</span>
+                </div>
+                <strong class="addon-price">+₹999</strong>
+              </label>
+
+              <div class="order-total-row">
+                <span>Total payable</span>
+                <strong id="seatTotalDisplay">₹15,998</strong>
+              </div>
+
+              <!-- CHOOSE YOUR BATCH -->
+              <div class="section-kicker teal-kicker mt-20">CHOOSE YOUR BATCH <span class="req">*</span></div>
+              <div class="batch-stack">
+                <label class="batch-row-card selected" id="batchCard1">
+                  <input
+                    type="radio"
+                    name="batch"
+                    value="Batch 1 - Sun, 6 Dec 2026"
+                    data-date="Sun, 6 Dec 2026"
+                    data-sheet="06 Dec 2026"
+                    checked
+                    required
+                  />
+                  <span class="radio-dot"></span>
+                  <div>
+                    <span class="batch-tag">BATCH 1</span>
+                    <strong class="batch-date">Sun, 6 Dec 2026</strong>
+                    <span class="batch-meta">7:30 PM IST · 12 sessions</span>
+                  </div>
+                </label>
+
+                <label class="batch-row-card" id="batchCard2">
+                  <input
+                    type="radio"
+                    name="batch"
+                    value="Batch 2 - Sat, 19 Dec 2026"
+                    data-date="Sat, 19 Dec 2026"
+                    data-sheet="19 Dec 2026"
+                    required
+                  />
+                  <span class="radio-dot"></span>
+                  <div>
+                    <span class="batch-tag">BATCH 2</span>
+                    <strong class="batch-date">Sat, 19 Dec 2026</strong>
+                    <span class="batch-meta">7:30 PM IST · 12 sessions</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- YOUR DETAILS (BASIC CONTACT FOR PAYMENT & WHATSAPP) -->
+            <div class="order-box mt-16">
+              <div class="section-kicker teal-kicker">YOUR DETAILS</div>
+
+              <div class="stack-16">
+                <div class="float-field">
+                  <label for="step1Name">Full name <span class="req">*</span></label>
+                  <input type="text" id="step1Name" name="name" required placeholder="Enter your full name" autocomplete="name" />
+                </div>
+
+                <div class="float-field">
+                  <label for="step1Email">Email <span class="req">*</span></label>
+                  <input type="email" id="step1Email" name="email" required placeholder="you@example.com" autocomplete="email" />
+                </div>
+
+                <div>
+                  <div class="phone-group">
+                    <div class="float-field country-select-wrap">
+                      <label for="countryCodeSelect">Code <span class="req">*</span></label>
+                      <select id="countryCodeSelect" name="countryCode" required aria-label="Country Dial Code">
+                        <option value="+91" selected>🇮🇳 +91 (India)</option>
+                        <option value="+971">🇦🇪 +971 (UAE / Dubai)</option>
+                        <option value="+966">🇸🇦 +966 (Saudi Arabia)</option>
+                        <option value="+968">🇴🇲 +968 (Oman)</option>
+                        <option value="+65">🇸🇬 +65 (Singapore)</option>
+                        <option value="+60">🇲🇾 +60 (Malaysia)</option>
+                        <option value="+1">🇺🇸 +1 (USA — TX, NY, etc.)</option>
+                        <option value="+44">🇬🇧 +44 (UK / England)</option>
+                        <option value="+1-CA">🇨🇦 +1 (Canada)</option>
+                        <option value="+61">🇦🇺 +61 (Australia)</option>
+                        <option value="+973">🇧🇭 +973 (Bahrain)</option>
+                        <option value="+880">🇧🇩 +880 (Bangladesh)</option>
+                        <option value="+33">🇫🇷 +33 (France)</option>
+                        <option value="+49">🇩🇪 +49 (Germany)</option>
+                        <option value="+852">🇭🇰 +852 (Hong Kong)</option>
+                        <option value="+62">🇮🇩 +62 (Indonesia)</option>
+                        <option value="+353">🇮🇪 +353 (Ireland)</option>
+                        <option value="+81">🇯🇵 +81 (Japan)</option>
+                        <option value="+965">🇰🇼 +965 (Kuwait)</option>
+                        <option value="+977">🇳🇵 +977 (Nepal)</option>
+                        <option value="+31">🇳🇱 +31 (Netherlands)</option>
+                        <option value="+64">🇳🇿 +64 (New Zealand)</option>
+                        <option value="+974">🇶🇦 +974 (Qatar)</option>
+                        <option value="+27">🇿🇦 +27 (South Africa)</option>
+                        <option value="+94">🇱🇰 +94 (Sri Lanka)</option>
+                        <option value="+41">🇨🇭 +41 (Switzerland)</option>
+                        <option value="+66">🇹🇭 +66 (Thailand)</option>
+                      </select>
+                    </div>
+
+                    <div class="float-field flex-1">
+                      <label for="step1Mobile">WhatsApp number <span class="req">*</span></label>
+                      <input type="tel" id="step1Mobile" name="mobile" required placeholder="9876543210" autocomplete="tel-national" />
+                    </div>
+                  </div>
+                  <p class="helper-caption">Zoom links and the group invite go to this number.</p>
+                </div>
+
+                <button type="submit" class="btn-pill-primary btn-full" id="reserveSeatBtn">
+                  Reserve my seat for ₹15,998 →
+                </button>
+                <p class="rzp-caption center-text">🔒 Secured by Razorpay. UPI, cards, netbanking.</p>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- -------------------------------------------------------
+             STEP 2: ONE TIME MEGA OFFER (COURSES UPSELL)
+             ------------------------------------------------------- -->
+        <div id="step2View" class="view-panel hidden">
+          <div class="mint-alert">
+            <span class="mint-check">✓</span>
+            <div>
+              <strong>Seat Payment Confirmed!</strong>
+              <p>Reserved for <strong id="reservedBatchDate">Sun, 6 Dec 2026</strong>. Optional one-time course offer before completing your profile.</p>
+            </div>
+          </div>
+
+          <div class="offer-intro">
+            <span class="teal-badge">RARE OPPORTUNITY · OPTIONAL</span>
+            <h2>ONE TIME MEGA OFFER!!</h2>
+            <p>As part of the <strong>esteemed AMI Community</strong>, unlock 2 of our most powerful courses at an exclusive one-time price.</p>
+          </div>
+
+          <!-- COURSE 01 -->
+          <label class="offer-card" id="courseBox1">
+            <input type="checkbox" id="course1Check" value="The Science of Peak Performance" data-price="2499" />
+            <div class="offer-card-top">
+              <span class="offer-checkbox"></span>
+              <div class="offer-info">
+                <span class="offer-tag">COURSE 01</span>
+                <h3>The Science of Peak Performance</h3>
+                <p class="offer-sub">Perform at your best, on demand. · 3 hrs · 1 yr recording access</p>
+              </div>
+              <div class="offer-pricing">
+                <span class="strike">₹9,999</span>
+                <strong class="price">₹2,499</strong>
+                <span class="save-pill">75% OFF</span>
+              </div>
+            </div>
+            <ul class="offer-points">
+              <li>How focus, dopamine, energy and flow drive performance</li>
+              <li>The exact conditions that trigger flow and your best work</li>
+              <li>Engineer your energy: sleep, recovery and daily rhythms</li>
+              <li>Beat procrastination and burnout with proven protocols</li>
+            </ul>
+          </label>
+
+          <!-- COURSE 02 -->
+          <label class="offer-card" id="courseBox2">
+            <input type="checkbox" id="course2Check" value="Cultivation of Money Energy" data-price="2499" />
+            <div class="offer-card-top">
+              <span class="offer-checkbox"></span>
+              <div class="offer-info">
+                <span class="offer-tag">COURSE 02</span>
+                <h3>Cultivation of Money Energy</h3>
+                <p class="offer-sub">Clear money blocks and tune into abundance. · 3 hrs · 1 yr access</p>
+              </div>
+              <div class="offer-pricing">
+                <span class="strike">₹9,999</span>
+                <strong class="price">₹2,499</strong>
+                <span class="save-pill">75% OFF</span>
+              </div>
+            </div>
+            <ul class="offer-points">
+              <li>Why your relationship with money sets your financial set-point</li>
+              <li>Clear the subconscious money blocks that keep wealth away</li>
+              <li>Daily wealth rituals that reprogram the mind for abundance</li>
+              <li>Turn raised energy into confident, wealth-building action</li>
+            </ul>
+          </label>
+
+          <div class="divider-label"><span>OR TAKE BOTH</span></div>
+
+          <!-- BUNDLE -->
+          <label class="offer-card bundle-card" id="bundleBox">
+            <span class="best-badge">BEST VALUE</span>
+            <input type="checkbox" id="bundleCheck" value="Both Courses Bundle" data-price="3499" />
+            <div class="offer-card-top">
+              <span class="offer-checkbox"></span>
+              <div class="offer-info">
+                <h3>Both Courses Bundle</h3>
+                <p class="offer-sub">The Science of Peak Performance + Cultivation of Money Energy (6 hrs total)</p>
+              </div>
+              <div class="offer-pricing">
+                <span class="strike">₹19,998</span>
+                <strong class="price">₹3,499</strong>
+                <span class="save-pill">Save ₹16,499</span>
+              </div>
+            </div>
+          </label>
+
+          <div class="checkout-summary">
+            <div class="sum-line">
+              <span>Courses selected</span>
+              <strong id="selectedCoursesText">None yet</strong>
+            </div>
+            <div class="sum-total">
+              <div>
+                <span>Total</span>
+                <small>INCLUSIVE OF 18% GST · NEVER VISIBLE AGAIN AT THIS PRICE</small>
+              </div>
+              <strong id="totalAmountText">₹0</strong>
+            </div>
+          </div>
+
+          <div class="offer-actions">
+            <button type="button" class="btn-pill-secondary" id="skipOfferBtn">
+              No thanks, continue to details →
+            </button>
+            <button type="button" class="btn-pill-primary" id="payCourseBtn" disabled>
+              Select a course to continue
+            </button>
+          </div>
+          <p class="rzp-caption">🔒 Secured by Razorpay</p>
+        </div>
+
+        <!-- -------------------------------------------------------
+             STEP 3: YOUR DETAILS (FULL PARTICIPANT ONBOARDING FORM)
+             ------------------------------------------------------- -->
+        <div id="step3View" class="view-panel hidden">
+          <form id="profileDetailsForm" novalidate>
+
+            <div class="form-section">
+              <div class="section-kicker">YOUR PERSONAL DETAILS</div>
+              <div class="grid-2">
+                <div class="float-field">
+                  <label for="ageGroup">Age Group <span class="req">*</span></label>
+                  <select id="ageGroup" name="ageGroup" required>
+                    <option value="">Select Age Group</option>
+                    <option value="18 - 24">18 - 24</option>
+                    <option value="25 - 34">25 - 34</option>
+                    <option value="35 - 44">35 - 44</option>
+                    <option value="45 - 54">45 - 54</option>
+                    <option value="55+">55+</option>
+                  </select>
+                </div>
+
+                <div class="float-field">
+                  <label for="gender">Gender <span class="req">*</span></label>
+                  <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <div class="section-kicker">YOUR RESIDENTIAL ADDRESS</div>
+              <div class="grid-3">
+                <div class="float-field">
+                  <label for="cityInput">City <span class="req">*</span></label>
+                  <input type="text" id="cityInput" name="city" required placeholder="e.g., Pune" autocomplete="address-level2" />
+                </div>
+
+                <div class="float-field">
+                  <label for="stateInput">State <span class="req">*</span></label>
+                  <input type="text" id="stateInput" name="state" required placeholder="e.g., Maharashtra" autocomplete="address-level1" />
+                </div>
+
+                <div class="float-field">
+                  <label for="countryInput">Country <span class="req">*</span></label>
+                  <input type="text" id="countryInput" name="country" required value="India" placeholder="Country" autocomplete="country-name" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <div class="section-kicker">PROFESSIONAL &amp; INCOME DETAILS</div>
+              <div class="grid-2">
+                <div class="float-field">
+                  <label for="occupationSelect">Occupation <span class="req">*</span></label>
+                  <select name="occupation" id="occupationSelect" required>
+                    <option value="">Select Occupation</option>
+                    <option value="Salaried Professional">Salaried Professional</option>
+                    <option value="Business Owner / Entrepreneur">Business Owner / Entrepreneur</option>
+                    <option value="Self-Employed / Freelancer">Self-Employed / Freelancer</option>
+                    <option value="Student">Student</option>
+                    <option value="Homemaker">Homemaker</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div class="float-field">
+                  <label for="incomeBracket">Current Income Bracket <span class="req">*</span></label>
+                  <select id="incomeBracket" name="incomeBracket" required>
+                    <option value="">Select Income Bracket</option>
+                    <option value="Below ₹5 LPA">Below ₹5 LPA</option>
+                    <option value="₹5 LPA - ₹10 LPA">₹5 LPA - ₹10 LPA</option>
+                    <option value="₹10 LPA - ₹25 LPA">₹10 LPA - ₹25 LPA</option>
+                    <option value="₹25 LPA - ₹50 LPA">₹25 LPA - ₹50 LPA</option>
+                    <option value="Above ₹50 LPA">Above ₹50 LPA</option>
+                  </select>
+                </div>
+
+                <!-- CONDITIONAL: SALARIED -->
+                <div class="float-field conditional-field hidden" id="salariedFieldsCompany">
+                  <label for="companyNameInput">Company Name <span class="req">*</span></label>
+                  <input type="text" name="companyName" id="companyNameInput" placeholder="Enter your company name" />
+                </div>
+
+                <div class="float-field conditional-field hidden" id="salariedFieldsDesignation">
+                  <label for="designationInput">Designation <span class="req">*</span></label>
+                  <input type="text" name="designation" id="designationInput" placeholder="Enter your role" />
+                </div>
+
+                <!-- CONDITIONAL: BUSINESS OWNER -->
+                <div class="float-field conditional-field hidden" id="businessFieldsName">
+                  <label for="businessNameInput">Business Name <span class="req">*</span></label>
+                  <input type="text" name="businessName" id="businessNameInput" placeholder="Enter your business name" />
+                </div>
+
+                <div class="float-field conditional-field hidden" id="businessFieldsIndustry">
+                  <label for="industryTypeInput">Industry Type <span class="req">*</span></label>
+                  <input type="text" name="industryType" id="industryTypeInput" placeholder="e.g., IT, Finance, Retail" />
+                </div>
+
+                <div class="float-field span-2">
+                  <label for="targetIncome">Target Income <span class="req">*</span></label>
+                  <input type="text" id="targetIncome" name="targetIncome" required placeholder="What is your target annual/monthly income?" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <div class="section-kicker">GOALS &amp; WORKSHOP INTENTIONS</div>
+
+              <label class="group-label">Your biggest pain points (select one or more) <span class="req">*</span></label>
+              <div class="chip-grid" id="painPointsGroup">
+                <label class="chip-option">
+                  <input type="checkbox" name="painPoints" value="Improving physical health" />
+                  <span class="chip-check"></span>
+                  <span>Improving physical health</span>
+                </label>
+                <label class="chip-option">
+                  <input type="checkbox" name="painPoints" value="Improving emotional and mental health" />
+                  <span class="chip-check"></span>
+                  <span>Improving emotional &amp; mental health</span>
+                </label>
+                <label class="chip-option">
+                  <input type="checkbox" name="painPoints" value="Improving money flow" />
+                  <span class="chip-check"></span>
+                  <span>Improving money flow</span>
+                </label>
+                <label class="chip-option">
+                  <input type="checkbox" name="painPoints" value="Improving relationships" />
+                  <span class="chip-check"></span>
+                  <span>Improving relationships</span>
+                </label>
+                <label class="chip-option">
+                  <input type="checkbox" name="painPoints" value="Improving business results" />
+                  <span class="chip-check"></span>
+                  <span>Improving business results</span>
+                </label>
+                <label class="chip-option">
+                  <input type="checkbox" name="painPoints" value="Overcoming procrastination, fear and self doubt" />
+                  <span class="chip-check"></span>
+                  <span>Overcoming procrastination, fear &amp; self doubt</span>
+                </label>
+                <label class="chip-option">
+                  <input type="checkbox" name="painPoints" value="Learning more about the subconscious mind" />
+                  <span class="chip-check"></span>
+                  <span>Learning more about the subconscious mind</span>
+                </label>
+                <label class="chip-option">
+                  <input type="checkbox" name="painPoints" value="Something else" />
+                  <span class="chip-check"></span>
+                  <span>Something else</span>
+                </label>
+              </div>
+              <span class="field-error" id="painPointsError">Please select at least one pain point.</span>
+
+              <div class="grid-2 mt-16">
+                <div class="float-field span-2">
+                  <label for="motivationInput">What motivated you to join this workshop? <span class="req">*</span></label>
+                  <textarea id="motivationInput" name="motivation" required placeholder="Share what inspired you to register..."></textarea>
+                </div>
+
+                <div class="float-field span-2">
+                  <label for="outcomeInput">What outcome are you looking forward to after the workshop? <span class="req">*</span></label>
+                  <textarea id="outcomeInput" name="outcome" required placeholder="Describe the transformation or clarity you want to achieve..."></textarea>
+                </div>
+
+                <div class="float-field span-2">
+                  <label for="referralInput">How did you hear about us? <span class="req">*</span></label>
+                  <select id="referralInput" name="referral" required>
+                    <option value="">Select an option</option>
+                    <option value="Social media">Social media</option>
+                    <option value="Friend or colleague referral">Friend or colleague referral</option>
+                    <option value="Advertisement">Advertisement</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <!-- CONDITIONAL: FRIEND OR COLLEAGUE REFERRAL NAME -->
+                <div class="float-field span-2 conditional-field hidden" id="referralNameField">
+                  <label for="referralNameInput">Friend or Colleague Name <span class="req">*</span></label>
+                  <input type="text" id="referralNameInput" name="referralName" placeholder="Enter your friend or colleague's full name" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <div class="section-kicker">TERMS &amp; CONDITIONS</div>
+              <div class="terms-scroll">
+                <p><strong>1. Purpose of the programme:</strong> Educational and awareness purposes only; does not constitute medical, legal, financial, or career advice.</p>
+                <p><strong>2. No guarantee of results:</strong> Individual outcomes vary; no specific result is guaranteed.</p>
+                <p><strong>3. Testimonials:</strong> Genuine participant experiences shared on public platforms; not a guarantee of similar outcomes.</p>
+                <p><strong>4. Medical disclaimer:</strong> Consult a qualified medical practitioner before altering any prescribed medication or treatment.</p>
+                <p><strong>5. Refund eligibility:</strong> Refund requests may be submitted within 3 calendar days of registration/payment, provided Day 1 of the programme has not yet commenced. No refunds once the programme commences.</p>
+                <p><strong>6. Missed batch:</strong> One (1) complimentary transfer to the next available batch is permitted.</p>
+              </div>
+
+              <label class="consent-row" id="termsConsentCard">
+                <input type="checkbox" id="termsCheckbox" required />
+                <span class="chip-check"></span>
+                <span>I have read, understood, and agree to the Terms and Conditions. <span class="req">*</span></span>
+              </label>
+              <span class="field-error" id="termsError">Please accept the Terms and Conditions to proceed.</span>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-pill-primary" id="saveDetailsBtn">
+                <span>Unlock WhatsApp Group</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- -------------------------------------------------------
+             STEP 4: WHATSAPP GROUP JOINING
+             ------------------------------------------------------- -->
+        <div id="step4View" class="view-panel hidden">
+          <div class="final-card">
+            <div class="final-icon">✓</div>
+            <h2 id="finalHeading">You're All Set!</h2>
+            <p class="final-sub">Your seat is confirmed for:</p>
+            <div class="confirmed-pill" id="confirmedBatchName">Batch Name</div>
+
+            <div class="receipt-box" id="purchasedReceipt">
+              <span class="receipt-tag">Payment Receipt</span>
+              <p id="receiptCourseSummary"></p>
+            </div>
+
+            <p class="final-note">
+              Click below to join the official WhatsApp group for your batch to receive live Zoom links and session updates.
+            </p>
+
+            <a href="#" id="whatsappJoinBtn" target="_blank" rel="noopener noreferrer" class="btn-pill-whatsapp">
+              Join WhatsApp Group
+            </a>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
